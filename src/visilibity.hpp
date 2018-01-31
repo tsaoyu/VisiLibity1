@@ -1110,6 +1110,8 @@ namespace VisiLibity
     /// reverse order of vertices
     void reverse();
     /// append the points from another polyline
+    std::vector<Point> path();
+    /// show all vertices of the polyline
     void append( const Polyline& polyline );
   private:
     std::vector<Point> vertices_;

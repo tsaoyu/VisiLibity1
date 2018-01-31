@@ -1507,6 +1507,11 @@ namespace VisiLibity
     }
   }
 
+  std::vector<Point> Polyline::path()
+  {
+    return Polyline::vertices_;
+  }
+
 
   //Polygon
 
@@ -2128,7 +2133,7 @@ namespace VisiLibity
   {
     //true  => data printed to terminal
     //false => silent
-    const bool PRINTING_DEBUG_DATA = false;
+    const bool PRINTING_DEBUG_DATA = true;
 
     //For now, just find one shortest path, later change this to a
     //vector to find all shortest paths (w/in epsilon).

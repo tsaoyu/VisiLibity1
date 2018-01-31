@@ -23,5 +23,7 @@ module = Extension('_visilibity',
 
 setup (name = 'PyVisiLibity',
        version = '1.0',
+       author = 'Yu Cao',
+       author_email = 'yu.cao@soton.ac.uk',
        description = 'Python bindings of VisiLibity1',
        ext_modules = [module])

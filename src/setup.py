@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# PyVisiLibity: a Python binding of VisiLibity1
+# VisiLibity: a Python binding of VisiLibity1
 # Copyright (C) 2018 Yu Cao < University of Southampton> Yu.Cao at soton.ac.uk
 #
 # This program is free software; you can redistribute it and/or modify
@@ -17,14 +17,26 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 
 from distutils.core import setup, Extension
+from distutils.command.build import build
 
-module = Extension('_visilibity',sources = ['visilibity.i'],
-		   swig_opts=['-c++'])
+class CustomBuild(build):
+    sub_commands = [
+        ('build_ext',     build.has_ext_modules),
+        ('build_py',      build.has_pure_modules),
+        ('build_clib',    build.has_c_libraries),
+        ('build_scripts', build.has_scripts),
+                    ]
 
-setup (name = 'PyVisiLibity',
-       version = '1.0',
+module = Extension('_visilibity', swig_opts = ['-c++'],
+        sources = ['visilibity.i', 'visilibity.cpp'],
+        headers = ['visilibity.hpp'], include = ['visilibity.hpp'])
+
+setup (name = 'VisiLibity',
+       version = '1.0.7',
+       cmdclass = {'build': CustomBuild},
        author = 'Yu Cao',
        author_email = 'yu.cao@soton.ac.uk',
        url = 'https://github.com/tsaoyu/VisiLibity1',
        description = 'Python bindings of VisiLibity1',
+       py_modules = ['visilibity'],
        ext_modules = [module])

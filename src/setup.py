@@ -18,12 +18,13 @@
 
 from distutils.core import setup, Extension
 
-module = Extension('_visilibity',
-			sources = ['visilibity_wrap.cxx','visilibity.cpp'])
+module = Extension('_visilibity',sources = ['visilibity.i'],
+		   swig_opts=['-c++'])
 
 setup (name = 'PyVisiLibity',
        version = '1.0',
        author = 'Yu Cao',
        author_email = 'yu.cao@soton.ac.uk',
+       url = 'https://github.com/tsaoyu/VisiLibity1',
        description = 'Python bindings of VisiLibity1',
        ext_modules = [module])
